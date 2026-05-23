@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>พักใจ Quote Maker</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:sans-serif;
+      background:#0f0f0f;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:420px;
+      background:#1b1b1b;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 0 25px rgba(0,0,0,0.5);
+    }
+
+    .image{
+      height:500px;
+      background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      display:flex;
+      flex-direction:column;
+      justify-content:end;
+      padding:25px;
+    }
+
+    .quote{
+      font-size:28px;
+      line-height:1.5;
+      font-weight:300;
+    }
+
+    .credit{
+      margin-top:15px;
+      color:#ffc0cb;
+      font-size:14px;
+    }
+
+    .content{
+      padding:20px;
+    }
+
+    textarea{
+      width:100%;
+      min-height:100px;
+      border:none;
+      outline:none;
+      border-radius:15px;
+      padding:15px;
+      background:#2a2a2a;
+      color:white;
+      margin-bottom:15px;
+      box-sizing:border-box;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:15px;
+      background:#ff4f87;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    button:hover{
+      opacity:0.9;
+    }
+
+    h1{
+      text-align:center;
+      margin-top:15px;
+    }
+
+    .desc{
+      text-align:center;
+      color:#bdbdbd;
+      font-size:14px;
+      margin-bottom:15px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="image">
+    <div class="overlay">
+
+```
+  <div class="quote" id="quoteText">
+    บางความรู้สึก... ก็พูดได้แค่ในเพลง
+  </div>
+
+  <div class="credit">
+    #สถานีเพลงเพราะ
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <div class="content">
+
+```
+<h1>พักใจ Quote Maker</h1>
+
+<div class="desc">
+  เว็บทำภาพคำคมโทนมืดละมุน
+</div>
+
+<textarea id="inputQuote" placeholder="พิมพ์คำคมของคุณ..."></textarea>
+
+<button onclick="changeQuote()">
+  เปลี่ยนคำคม
+</button>
+```
+
+  </div>
+
+</div>
+
+<script>
+
+function changeQuote(){
+  const input = document.getElementById("inputQuote").value;
+  document.getElementById("quoteText").innerText = input;
+}
+
+</script>
+
+</body>
+</html>
