@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>พักใจ Quote Maker</title>
+
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&family=Mali:wght@400;500&family=Itim&display=swap" rel="stylesheet">
 
   <style>
     body{
       margin:0;
-      font-family:sans-serif;
-      background:#111;
+      font-family:'Prompt', sans-serif;
+      background:#0f0f0f;
       color:white;
       display:flex;
       justify-content:center;
@@ -18,114 +23,231 @@
       padding:20px;
     }
 
-    .card{
+    .app{
       width:100%;
-      max-width:420px;
-      background:#222;
-      border-radius:25px;
-      overflow:hidden;
+      max-width:430px;
+    }
+
+    h1{
+      text-align:center;
+      margin:10px 0 5px;
+      font-family:'Mali', cursive;
+    }
+
+    .desc{
+      text-align:center;
+      color:#bbb;
+      font-size:14px;
+      margin-bottom:18px;
     }
 
     #quoteCard{
-      height:520px;
+      width:100%;
+      height:560px;
       background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop');
       background-size:cover;
       background-position:center;
+      border-radius:28px;
+      overflow:hidden;
       position:relative;
+      box-shadow:0 0 30px rgba(0,0,0,0.6);
     }
 
     .overlay{
       position:absolute;
       inset:0;
-      background:rgba(0,0,0,0.45);
+      background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.35), rgba(0,0,0,.25));
+      padding:28px;
       display:flex;
       flex-direction:column;
-      justify-content:end;
-      padding:25px;
+      justify-content:flex-end;
+    }
+
+    #logo{
+      width:35px;
+      height:35px;
+      object-fit:cover;
+      border-radius:50%;
+      position:absolute;
+      top:18px;
+      left:18px;
+      opacity:.9;
+      box-shadow:0 0 8px rgba(0,0,0,.5);
     }
 
     #quoteText{
-      font-size:28px;
-      line-height:1.5;
-      font-weight:bold;
+      font-family:'Mali', cursive;
+      font-size:29px;
+      line-height:1.55;
+      font-weight:500;
+      text-shadow:0 3px 10px rgba(0,0,0,.9);
+      white-space:pre-line;
     }
 
     .credit{
-      margin-top:15px;
-      color:#ffc0cb;
+      margin-top:18px;
+      color:#ffd6df;
+      font-size:15px;
+      text-shadow:0 2px 8px rgba(0,0,0,.8);
     }
 
-    .content{
-      padding:20px;
+    .panel{
+      background:#1d1d1d;
+      margin-top:18px;
+      padding:18px;
+      border-radius:25px;
     }
 
-    textarea, input{
+    textarea, select, input{
       width:100%;
       box-sizing:border-box;
-      margin:10px 0;
+      margin-top:10px;
       padding:14px;
-      border-radius:15px;
+      border-radius:16px;
       border:none;
-      background:#333;
+      outline:none;
+      background:#2d2d2d;
       color:white;
+      font-family:'Prompt', sans-serif;
+      font-size:15px;
+    }
+
+    textarea{
+      min-height:100px;
+      resize:none;
     }
 
     button{
       width:100%;
       padding:15px;
       border:none;
-      border-radius:15px;
-      background:#ff4f87;
+      border-radius:16px;
+      background:#ff5b92;
       color:white;
       font-size:16px;
-      margin-top:10px;
+      font-family:'Prompt', sans-serif;
+      margin-top:12px;
       cursor:pointer;
     }
 
-    .gray{
+    button.gray{
       background:#555;
     }
 
-    h1{
-      text-align:center;
+    button.dark{
+      background:#333;
     }
-  </style>#logo{
-  width:35px;
-  opacity:0.85;
-  position:absolute;
-  top:20px;
-  left:20px;
-  border-radius:50%;
-}
 
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .small{
+      font-size:13px;
+      color:#bbb;
+      margin-top:14px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="app">
+
+  <h1>พักใจ Quote Maker</h1>
+  <div class="desc">ใส่รูปตัวเอง • สุ่มคำคม • ดาวน์โหลดไปโพสต์ได้เลย</div>
 
   <div id="quoteCard">
-    <div class="relative">
+    <img id="logo" src="https://via.placeholder.com/100x100.png?text=P" />
+    <div class="overlay">
       <div id="quoteText">บางความรู้สึก... ก็พูดได้แค่ในเพลง</div>
-      <div class="credit">~ พักใจ #สถานีเพลงเพราะ ~</div>
-    </div><img id="logo" src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/686967817_122259174320321740_4901765552375264710_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zkEPqtwCT_QQ7kNvwEZJvAS&_nc_oc=AdpeCB-OZG-YrnHEZ-4RAXZX9GnWvbFOhotZFPsDJHGQCaqBjBPNIarSrwDkEYXexQUbjVoh8lTeEak11rC0AY_Z&_nc_zt=23&_nc_ht=scontent.fbkk12-1.fna&_nc_gid=p0YXnrz1dZ3NUDTtoqDyvg&_nc_ss=7b2a8&oh=00_Af4YvH3r_mMhqh-9Y8d0Zl7P7zIfmdec69_ExO9O_RClCw&oe=6A1739A7" />
+      <div class="credit">Cr.พักใจ</div>
+    </div>
   </div>
 
-  <div class="content">
-    <h1>พักใจ Quote Maker</h1>
+  <div class="panel">
 
-    <textarea id="inputQuote" placeholder="พิมพ์คำคมของคุณ..."></textarea>
+    <label>เลือกหมวดคำคม</label>
+    <select id="category">
+      <option value="sad">อกหัก</option>
+      <option value="lonely">เหงา</option>
+      <option value="heal">ฮีลใจ</option>
+      <option value="love">แอบรัก</option>
+    </select>
 
-    <button onclick="changeQuote()">เปลี่ยนคำคม</button>
+    <button onclick="randomQuote()">สุ่มคำคมสำเร็จรูป</button>
 
-    <input type="file" id="imageUpload" accept="image/*" onchange="changeImage(event)">
+    <textarea id="inputQuote" placeholder="หรือพิมพ์คำคมของคุณเอง..."></textarea>
+    <button onclick="changeQuote()">ใช้คำคมที่พิมพ์เอง</button>
 
-    <button class="gray" onclick="downloadImage()">ดาวน์โหลดภาพ</button>
+    <div class="small">อัปโหลดรูปพื้นหลังของตัวเอง</div>
+    <input type="file" accept="image/*" onchange="changeImage(event)" />
+
+    <div class="small">อัปโหลดโลโก้เพจ</div>
+    <input type="file" accept="image/*" onchange="changeLogo(event)" />
+
+    <div class="row">
+      <button class="gray" onclick="changeFont()">เปลี่ยนฟอนต์</button>
+      <button class="dark" onclick="downloadImage()">ดาวน์โหลด PNG</button>
+    </div>
+
   </div>
 
 </div>
 
 <script>
+const quotes = {
+  sad: [
+    "บางคนอยู่ในใจ\nแต่ไม่มีสิทธิ์อยู่ในชีวิต",
+    "ไม่ได้แพ้ใคร\nแค่แพ้ใจตัวเองที่ยังคิดถึงเขา",
+    "บางความสัมพันธ์\nจบแล้วแต่ใจยังไม่ยอมจบ",
+    "คนที่เคยทำให้ยิ้ม\nวันนี้กลับเป็นเหตุผลที่ทำให้เงียบ",
+    "เจ็บที่สุด\nคือยังรักคนที่กลับมาไม่ได้แล้ว",
+    "บางคนผ่านมาให้รัก\nแต่ไม่ได้ผ่านมาให้อยู่"
+  ],
+  lonely: [
+    "บางความรู้สึก...\nก็พูดได้แค่ในเพลง",
+    "กลางคืนไม่ได้เหงา\nใจเราต่างหากที่ว่างเปล่า",
+    "บางทีความเงียบ\nก็ดังกว่าคำพูดเป็นพันคำ",
+    "อยู่คนเดียวไม่ได้น่ากลัว\nเท่ารู้สึกคนเดียวทั้งที่มีใครบางคน",
+    "มีเพลงบางเพลง\nที่ฟังกี่ครั้งก็ยังคิดถึงคนเดิม",
+    "บางคืนไม่ได้อยากร้องไห้\nแต่ใจมันเหนื่อยเอง"
+  ],
+  heal: [
+    "พักใจบ้างนะ\nเหนื่อยก็แค่หยุดพัก ไม่ใช่หยุดฝัน",
+    "วันนี้อาจไม่ดี\nแต่ไม่ได้แปลว่าชีวิตจะไม่ดีตลอดไป",
+    "ค่อยๆ เติบโต\nในแบบของตัวเองก็พอ",
+    "ใจที่เคยพัง\nวันหนึ่งจะกลับมาแข็งแรงกว่าเดิม",
+    "ไม่ต้องเก่งทุกวัน\nแค่ไม่ทิ้งตัวเองก็พอ",
+    "ให้เวลากับหัวใจ\nเหมือนที่เคยให้เวลากับคนอื่น"
+  ],
+  love: [
+    "เป็นได้แค่คนมอง\nไม่ใช่คนข้างๆ",
+    "บางครั้งการได้รัก\nก็ไม่จำเป็นต้องได้ครอบครอง",
+    "แค่เห็นเธอยิ้ม\nเราก็ใจอ่อนทั้งวันแล้ว",
+    "อยู่ใกล้แค่ไหน\nถ้าเขาไม่รัก ก็ไกลอยู่ดี",
+    "แอบรักไม่เจ็บเท่า\nแอบหวังว่าเขาจะรักกลับ",
+    "เธออาจไม่รู้ตัว\nแต่เธอคือรอยยิ้มของเรา"
+  ]
+};
+
+const fonts = [
+  "'Mali', cursive",
+  "'Prompt', sans-serif",
+  "'Itim', cursive"
+];
+
+let fontIndex = 0;
+
+function randomQuote(){
+  const category = document.getElementById("category").value;
+  const list = quotes[category];
+  const random = list[Math.floor(Math.random() * list.length)];
+  document.getElementById("quoteText").innerText = random;
+}
+
 function changeQuote(){
   const input = document.getElementById("inputQuote").value;
   if(input.trim() !== ""){
@@ -139,15 +261,34 @@ function changeImage(event){
     const reader = new FileReader();
     reader.onload = function(e){
       document.getElementById("quoteCard").style.backgroundImage = `url('${e.target.result}')`;
-    }
+    };
     reader.readAsDataURL(file);
   }
 }
 
+function changeLogo(event){
+  const file = event.target.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      document.getElementById("logo").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function changeFont(){
+  fontIndex = (fontIndex + 1) % fonts.length;
+  document.getElementById("quoteText").style.fontFamily = fonts[fontIndex];
+}
+
 function downloadImage(){
   const card = document.getElementById("quoteCard");
-
-  html2canvas(card).then(canvas => {
+  html2canvas(card, {
+    scale:3,
+    useCORS:true,
+    backgroundColor:null
+  }).then(canvas => {
     const link = document.createElement("a");
     link.download = "paakjai-quote.png";
     link.href = canvas.toDataURL("image/png");
