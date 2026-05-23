@@ -1,254 +1,339 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>พักใจ Quote Maker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พักใจ Quote Maker</title>
 
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&family=Mali:wght@400;500&family=Itim&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&family=Mali:wght@400;500&family=Itim&family=Anuphan:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    body{
-      margin:0;
-      font-family:'Prompt', sans-serif;
-      background:#0f0f0f;
-      color:white;
-      display:flex;
-      justify-content:center;
-      min-height:100vh;
-      padding:20px;
-    }
-
-    .app{
-      width:100%;
-      max-width:430px;
-    }
-
-    h1{
-      text-align:center;
-      margin:10px 0 5px;
-      font-family:'Mali', cursive;
-    }
-
-    .desc{
-      text-align:center;
-      color:#bbb;
-      font-size:14px;
-      margin-bottom:18px;
-    }
-
-    #quoteCard{
-      width:100%;
-      height:560px;
-      background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      border-radius:28px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 0 30px rgba(0,0,0,0.6);
-    }
-
-    .overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.35), rgba(0,0,0,.25));
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-    }
-
-    #logo{
-      width:35px;
-      height:35px;
-      object-fit:cover;
-      border-radius:50%;
-      position:absolute;
-      top:18px;
-      left:18px;
-      opacity:.9;
-      box-shadow:0 0 8px rgba(0,0,0,.5);
-    }
-
-    #quoteText{
-      font-family:'Mali', cursive;
-      font-size:29px;
-      line-height:1.55;
-      font-weight:500;
-      text-shadow:0 3px 10px rgba(0,0,0,.9);
-      white-space:pre-line;
-    }
-
-    .credit{
-      margin-top:18px;
-      color:#ffd6df;
-      font-size:15px;
-      text-shadow:0 2px 8px rgba(0,0,0,.8);
-    }
-
-    .panel{
-      background:#1d1d1d;
-      margin-top:18px;
-      padding:18px;
-      border-radius:25px;
-    }
-
-    textarea, select, input{
-      width:100%;
-      box-sizing:border-box;
-      margin-top:10px;
-      padding:14px;
-      border-radius:16px;
-      border:none;
-      outline:none;
-      background:#2d2d2d;
-      color:white;
-      font-family:'Prompt', sans-serif;
-      font-size:15px;
-    }
-
-    textarea{
-      min-height:100px;
-      resize:none;
-    }
-
-    button{
-      width:100%;
-      padding:15px;
-      border:none;
-      border-radius:16px;
-      background:#ff5b92;
-      color:white;
-      font-size:16px;
-      font-family:'Prompt', sans-serif;
-      margin-top:12px;
-      cursor:pointer;
-    }
-
-    button.gray{
-      background:#555;
-    }
-
-    button.dark{
-      background:#333;
-    }
-
-    .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .small{
-      font-size:13px;
-      color:#bbb;
-      margin-top:14px;
-    }
-    #logo{
-position:absolute;
-top:12px;
-left:12px;
-width:32px;
-height:32px;
-border-radius:50%;
-object-fit:cover;
-z-index:10;
-opacity:0.95;
-box-shadow:0 2px 8px rgba(0,0,0,0.4);
+<style>
+body{
+  margin:0;
+  background:#0d0d0d;
+  color:white;
+  font-family:'Prompt',sans-serif;
+  display:flex;
+  justify-content:center;
+  min-height:100vh;
+  padding:20px;
 }
-  </style>
+
+.app{
+  width:100%;
+  max-width:430px;
+}
+
+h1{
+  text-align:center;
+  font-family:'Mali',cursive;
+  margin:10px 0 5px;
+}
+
+.desc{
+  text-align:center;
+  color:#bbb;
+  font-size:14px;
+  margin-bottom:16px;
+}
+
+#quoteCard{
+  width:100%;
+  height:560px;
+  background-size:cover;
+  background-position:center;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.35),rgba(0,0,0,.25));
+}
+
+#logo{
+  position:absolute;
+  top:12px;
+  left:12px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+  z-index:10;
+  opacity:.95;
+  box-shadow:0 2px 8px rgba(0,0,0,.4);
+}
+
+#quoteText{
+  font-family:'Mali',cursive;
+  font-size:29px;
+  line-height:1.55;
+  font-weight:500;
+  text-shadow:0 3px 12px rgba(0,0,0,.95);
+  white-space:pre-line;
+}
+
+.credit{
+  margin-top:18px;
+  color:#ffd6df;
+  font-size:15px;
+  text-shadow:0 2px 8px rgba(0,0,0,.9);
+}
+
+.panel{
+  background:#1b1b1b;
+  margin-top:18px;
+  padding:18px;
+  border-radius:25px;
+}
+
+textarea,select,input{
+  width:100%;
+  box-sizing:border-box;
+  margin-top:10px;
+  padding:14px;
+  border-radius:16px;
+  border:none;
+  outline:none;
+  background:#2d2d2d;
+  color:white;
+  font-family:'Prompt',sans-serif;
+  font-size:15px;
+}
+
+textarea{
+  min-height:95px;
+  resize:none;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:16px;
+  background:#ff5b92;
+  color:white;
+  font-size:16px;
+  font-family:'Prompt',sans-serif;
+  margin-top:12px;
+  cursor:pointer;
+}
+
+button.gray{background:#555;}
+button.dark{background:#333;}
+button.gold{background:#9b6b2f;}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.small{
+  font-size:13px;
+  color:#bbb;
+  margin-top:14px;
+}
+
+#songText{
+  background:#292929;
+  padding:13px;
+  border-radius:15px;
+  margin-top:10px;
+  color:#ffd6df;
+  font-size:14px;
+  line-height:1.5;
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <h1>พักใจ Quote Maker</h1>
-  <div class="desc">ใส่รูปตัวเอง • สุ่มคำคม • ดาวน์โหลดไปโพสต์ได้เลย</div>
+<h1>พักใจ Quote Maker</h1>
+<div class="desc">ใส่รูป • สุ่มคำคม • ใส่เพลง • ดาวน์โหลดภาพได้ทันที</div>
 
-  <div id="quoteCard">
-    <img id="logo" src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/686967817_122259174320321740_4901765552375264710_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zkEPqtwCT_QQ7kNvwEZJvAS&_nc_oc=AdpeCB-OZG-YrnHEZ-4RAXZX9GnWvbFOhotZFPsDJHGQCaqBjBPNIarSrwDkEYXexQUbjVoh8lTeEak11rC0AY_Z&_nc_zt=23&_nc_ht=scontent.fbkk12-1.fna&_nc_gid=p0YXnrz1dZ3NUDTtoqDyvg&_nc_ss=7b2a8&oh=00_Af4YvH3r_mMhqh-9Y8d0Zl7P7zIfmdec69_ExO9O_RClCw&oe=6A1739A7" />
-    <div class="overlay">
-      <div id="quoteText">บางความรู้สึก... ก็พูดได้แค่ในเพลง</div>
-      <div class="credit">Cr.พักใจ#สถานีเพลงเพราะ</div>
-    </div>
+<div id="quoteCard">
+  <img id="logo" src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/686967817_122259174320321740_4901765552375264710_n.jpg">
+  <div class="overlay">
+    <div id="quoteText">บางความรู้สึก... ก็พูดได้แค่ในเพลง</div>
+    <div class="credit">Cr.พักใจ</div>
   </div>
+</div>
 
-  <div class="panel">
+<div class="panel">
 
-    <label>เลือกหมวดคำคม</label>
-    <select id="category">
-      <option value="sad">อกหัก</option>
-      <option value="lonely">เหงา</option>
-      <option value="heal">ฮีลใจ</option>
-      <option value="love">แอบรัก</option>
-    </select>
+<label>เลือกแนวคำคม</label>
+<select id="category">
+  <option value="sad">อกหัก</option>
+  <option value="lonely">เหงา</option>
+  <option value="heal">ฮีลใจ</option>
+  <option value="love">แอบรัก</option>
+  <option value="funny">สายฮา</option>
+  <option value="drunk">ขี้เมา</option>
+</select>
 
-    <button onclick="randomQuote()">สุ่มคำคมสำเร็จรูป</button>
+<button onclick="randomQuote()">สุ่มคำคม</button>
 
-    <textarea id="inputQuote" placeholder="หรือพิมพ์คำคมของคุณเอง..."></textarea>
-    <button onclick="changeQuote()">ใช้คำคมที่พิมพ์เอง</button>
+<textarea id="inputQuote" placeholder="หรือพิมพ์คำคมเอง..."></textarea>
+<button onclick="changeQuote()">ใช้คำคมที่พิมพ์เอง</button>
 
-    <div class="small">อัปโหลดรูปพื้นหลังของตัวเอง</div>
-    <input type="file" accept="image/*" onchange="changeImage(event)" />
+<div class="small">อัปโหลดรูปของตัวเอง</div>
+<input type="file" accept="image/*" onchange="changeImage(event)">
 
-    <div class="small">อัปโหลดโลโก้เพจ</div>
-    <input type="file" accept="image/*" onchange="changeLogo(event)" />
+<div class="small">เลือกธีมภาพ</div>
+<select onchange="changeTheme(this.value)">
+  <option value="dark">มืดละมุน</option>
+  <option value="pink">ชมพูละมุน</option>
+  <option value="blue">ฟ้าเหงา</option>
+  <option value="gold">ทองอบอุ่น</option>
+</select>
 
-    <div class="row">
-      <button class="gray" onclick="changeFont()">เปลี่ยนฟอนต์</button>
-      <button class="dark" onclick="downloadImage()">ดาวน์โหลด PNG</button>
-    </div>
+<div class="row">
+  <button class="gray" onclick="changeFont()">เปลี่ยนฟอนต์</button>
+  <button class="gold" onclick="autoBackground()">สุ่มภาพปก</button>
+</div>
 
-  </div>
+<div class="small">อัปโหลดเสียงเพลงของคุณเอง</div>
+<input type="file" accept="audio/*" onchange="loadMusic(event)">
 
+<div class="row">
+  <button onclick="playMusic()">เล่นเพลง</button>
+  <button class="gray" onclick="pauseMusic()">หยุดเพลง</button>
+</div>
+
+<button class="dark" onclick="randomSongIdea()">สุ่มแนวเพลงแนะนำ</button>
+<div id="songText">เพลงแนะนำจะแสดงตรงนี้</div>
+
+<button onclick="downloadImage()">ดาวน์โหลด PNG</button>
+
+<audio id="audioPlayer"></audio>
+
+</div>
 </div>
 
 <script>
-const quotes = {
-  sad: [
-    "บางคนอยู่ในใจ\nแต่ไม่มีสิทธิ์อยู่ในชีวิต",
-    "ไม่ได้แพ้ใคร\nแค่แพ้ใจตัวเองที่ยังคิดถึงเขา",
-    "บางความสัมพันธ์\nจบแล้วแต่ใจยังไม่ยอมจบ",
-    "คนที่เคยทำให้ยิ้ม\nวันนี้กลับเป็นเหตุผลที่ทำให้เงียบ",
-    "เจ็บที่สุด\nคือยังรักคนที่กลับมาไม่ได้แล้ว",
-    "บางคนผ่านมาให้รัก\nแต่ไม่ได้ผ่านมาให้อยู่"
-  ],
-  lonely: [
-    "บางความรู้สึก...\nก็พูดได้แค่ในเพลง",
-    "กลางคืนไม่ได้เหงา\nใจเราต่างหากที่ว่างเปล่า",
-    "บางทีความเงียบ\nก็ดังกว่าคำพูดเป็นพันคำ",
-    "อยู่คนเดียวไม่ได้น่ากลัว\nเท่ารู้สึกคนเดียวทั้งที่มีใครบางคน",
-    "มีเพลงบางเพลง\nที่ฟังกี่ครั้งก็ยังคิดถึงคนเดิม",
-    "บางคืนไม่ได้อยากร้องไห้\nแต่ใจมันเหนื่อยเอง"
-  ],
-  heal: [
-    "พักใจบ้างนะ\nเหนื่อยก็แค่หยุดพัก ไม่ใช่หยุดฝัน",
-    "วันนี้อาจไม่ดี\nแต่ไม่ได้แปลว่าชีวิตจะไม่ดีตลอดไป",
-    "ค่อยๆ เติบโต\nในแบบของตัวเองก็พอ",
-    "ใจที่เคยพัง\nวันหนึ่งจะกลับมาแข็งแรงกว่าเดิม",
-    "ไม่ต้องเก่งทุกวัน\nแค่ไม่ทิ้งตัวเองก็พอ",
-    "ให้เวลากับหัวใจ\nเหมือนที่เคยให้เวลากับคนอื่น"
-  ],
-  love: [
-    "เป็นได้แค่คนมอง\nไม่ใช่คนข้างๆ",
-    "บางครั้งการได้รัก\nก็ไม่จำเป็นต้องได้ครอบครอง",
-    "แค่เห็นเธอยิ้ม\nเราก็ใจอ่อนทั้งวันแล้ว",
-    "อยู่ใกล้แค่ไหน\nถ้าเขาไม่รัก ก็ไกลอยู่ดี",
-    "แอบรักไม่เจ็บเท่า\nแอบหวังว่าเขาจะรักกลับ",
-    "เธออาจไม่รู้ตัว\nแต่เธอคือรอยยิ้มของเรา"
-  ]
+const logoURL = "https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/686967817_122259174320321740_4901765552375264710_n.jpg";
+
+const backgrounds = [
+"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop"
+];
+
+document.getElementById("quoteCard").style.backgroundImage = `url('${backgrounds[0]}')`;
+
+const baseQuotes = {
+sad:[
+"บางคนอยู่ในใจ\nแต่ไม่มีสิทธิ์อยู่ในชีวิต",
+"ไม่ได้แพ้ใคร\nแค่แพ้ใจตัวเองที่ยังคิดถึงเขา",
+"คนที่เคยทำให้ยิ้ม\nวันนี้กลับเป็นเหตุผลที่ทำให้เงียบ",
+"บางความสัมพันธ์\nจบแล้วแต่ใจยังไม่ยอมจบ",
+"เจ็บที่สุด\nคือยังรักคนที่กลับมาไม่ได้แล้ว",
+"บางคนผ่านมาให้รัก\nแต่ไม่ได้ผ่านมาให้อยู่",
+"คิดถึงได้\nแต่กลับไปไม่ได้แล้ว",
+"บางแผลไม่ได้หาย\nแค่เราเลิกพูดถึงมัน"
+],
+lonely:[
+"บางความรู้สึก...\nก็พูดได้แค่ในเพลง",
+"กลางคืนไม่ได้เหงา\nใจเราต่างหากที่ว่างเปล่า",
+"บางทีความเงียบ\nก็ดังกว่าคำพูดเป็นพันคำ",
+"อยู่คนเดียวไม่ได้น่ากลัว\nเท่ารู้สึกคนเดียวทั้งที่มีใครบางคน",
+"บางคืนไม่ได้อยากร้องไห้\nแต่ใจมันเหนื่อยเอง",
+"เหงาไม่ใช่ไม่มีใคร\nแต่ไม่มีคนที่ใจต้องการ",
+"เพลงบางเพลง\nพาเรากลับไปหาใครบางคน",
+"ยิ้มได้ทั้งวัน\nแต่พังทุกคืน"
+],
+heal:[
+"พักใจบ้างนะ\nเหนื่อยก็แค่หยุดพัก ไม่ใช่หยุดฝัน",
+"วันนี้อาจไม่ดี\nแต่ไม่ได้แปลว่าชีวิตจะไม่ดีตลอดไป",
+"ค่อยๆ เติบโต\nในแบบของตัวเองก็พอ",
+"ใจที่เคยพัง\nวันหนึ่งจะกลับมาแข็งแรงกว่าเดิม",
+"ไม่ต้องเก่งทุกวัน\nแค่ไม่ทิ้งตัวเองก็พอ",
+"ให้เวลากับหัวใจ\nเหมือนที่เคยให้เวลากับคนอื่น",
+"เริ่มใหม่ได้เสมอ\nแม้ใจจะยังไม่พร้อม",
+"อย่าลืมใจดีกับตัวเองบ้างนะ"
+],
+love:[
+"เป็นได้แค่คนมอง\nไม่ใช่คนข้างๆ",
+"บางครั้งการได้รัก\nก็ไม่จำเป็นต้องได้ครอบครอง",
+"แค่เห็นเธอยิ้ม\nเราก็ใจอ่อนทั้งวันแล้ว",
+"อยู่ใกล้แค่ไหน\nถ้าเขาไม่รัก ก็ไกลอยู่ดี",
+"แอบรักไม่เจ็บเท่า\nแอบหวังว่าเขาจะรักกลับ",
+"เธออาจไม่รู้ตัว\nแต่เธอคือรอยยิ้มของเรา",
+"ไม่ได้อยากเป็นคนสำคัญ\nแค่อยากเป็นคนที่เธอนึกถึง",
+"บางคนแค่ผ่านตา\nแต่ติดอยู่ในใจนานมาก"
+],
+funny:[
+"หน้าตาไม่ดี\nแต่มีใจให้เต็มร้อย",
+"ไม่ได้เจ้าชู้\nแค่เอ็นดูหลายคน",
+"โสดไม่ใช่ปัญหา\nปัญหาคือไม่มีใครเอา",
+"รักแท้แพ้คนรวย\nส่วนเราซวยทั้งรักทั้งจน",
+"ไม่สวยแต่โอนไว\nสนใจไหมคะ",
+"ความรักกินไม่ได้\nแต่หมูกระทะกินได้",
+"ไม่ได้อ่อย\nแค่ยิ้มบ่อยไปหน่อย",
+"โสดแบบมีระดับ\nระดับไม่มีใครเอา"
+],
+drunk:[
+"เหล้าไม่ได้ทำให้ลืม\nแค่ทำให้กล้าคิดถึง",
+"เมาแล้วเพ้อ\nดีกว่าเงียบแล้วเจ็บ",
+"แก้วแรกไม่เป็นไร\nแก้วต่อไปเริ่มทักหาแฟนเก่า",
+"ไม่ได้ติดเหล้า\nแค่เหงาแล้วมันมีน้ำแข็ง",
+"เมาให้สุด\nแล้วหยุดที่คิดถึงเธอ",
+"คืนนี้ไม่เศร้า\nแค่เหล้ามันเข้าใจ",
+"เหล้าอยู่ในแก้ว\nแต่เธออยู่ในใจ",
+"เมาแล้วร้องไห้\nยังดีกว่ายิ้มแล้วฝืน"
+]
 };
 
+function makeManyQuotes(list){
+  const endings = [
+    "คืนนี้ก็ยังรู้สึกแบบเดิม",
+    "แค่พูดออกมาไม่ได้",
+    "เก็บไว้ในใจเงียบๆ ก็พอ",
+    "สุดท้ายก็ต้องยิ้มให้ไหว",
+    "บางทีใจเราก็เหนื่อยเกินไป",
+    "ขอให้พรุ่งนี้ใจเบากว่านี้",
+    "ไม่เป็นไร เดี๋ยวมันก็ผ่านไป",
+    "เพลงบางเพลงเข้าใจเรามากกว่าคนบางคน",
+    "ไม่ต้องเข้มแข็งตลอดเวลาก็ได้",
+    "แค่ยังคิดถึง ไม่ได้แปลว่าอยากกลับไป"
+  ];
+  let result = [];
+  list.forEach(q=>{
+    result.push(q);
+    endings.forEach(e=>{
+      result.push(q + "\n" + e);
+    });
+  });
+  return result;
+}
+
+const quotes = {};
+Object.keys(baseQuotes).forEach(key=>{
+  quotes[key] = makeManyQuotes(baseQuotes[key]);
+});
+
 const fonts = [
-  "'Mali', cursive",
-  "'Prompt', sans-serif",
-  "'Itim', cursive"
+"'Mali',cursive",
+"'Prompt',sans-serif",
+"'Itim',cursive",
+"'Anuphan',sans-serif"
 ];
 
 let fontIndex = 0;
@@ -256,7 +341,7 @@ let fontIndex = 0;
 function randomQuote(){
   const category = document.getElementById("category").value;
   const list = quotes[category];
-  const random = list[Math.floor(Math.random() * list.length)];
+  const random = list[Math.floor(Math.random()*list.length)];
   document.getElementById("quoteText").innerText = random;
 }
 
@@ -271,22 +356,16 @@ function changeImage(event){
   const file = event.target.files[0];
   if(file){
     const reader = new FileReader();
-    reader.onload = function(e){
+    reader.onload = e=>{
       document.getElementById("quoteCard").style.backgroundImage = `url('${e.target.result}')`;
     };
     reader.readAsDataURL(file);
   }
 }
 
-function changeLogo(event){
-  const file = event.target.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = function(e){
-      document.getElementById("logo").src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+function autoBackground(){
+  const bg = backgrounds[Math.floor(Math.random()*backgrounds.length)];
+  document.getElementById("quoteCard").style.backgroundImage = `url('${bg}')`;
 }
 
 function changeFont(){
@@ -294,13 +373,66 @@ function changeFont(){
   document.getElementById("quoteText").style.fontFamily = fonts[fontIndex];
 }
 
+function changeTheme(theme){
+  const overlay = document.querySelector(".overlay");
+  if(theme==="dark"){
+    overlay.style.background = "linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.35),rgba(0,0,0,.25))";
+  }
+  if(theme==="pink"){
+    overlay.style.background = "linear-gradient(to top,rgba(50,0,25,.78),rgba(120,30,70,.35),rgba(0,0,0,.2))";
+  }
+  if(theme==="blue"){
+    overlay.style.background = "linear-gradient(to top,rgba(0,15,40,.82),rgba(0,60,100,.35),rgba(0,0,0,.2))";
+  }
+  if(theme==="gold"){
+    overlay.style.background = "linear-gradient(to top,rgba(55,30,0,.8),rgba(120,80,20,.35),rgba(0,0,0,.2))";
+  }
+}
+
+function loadMusic(event){
+  const file = event.target.files[0];
+  if(file){
+    const audio = document.getElementById("audioPlayer");
+    audio.src = URL.createObjectURL(file);
+  }
+}
+
+function playMusic(){
+  const audio = document.getElementById("audioPlayer");
+  if(audio.src){
+    audio.play();
+  }else{
+    alert("กรุณาอัปโหลดเพลงก่อนนะคะ");
+  }
+}
+
+function pauseMusic(){
+  document.getElementById("audioPlayer").pause();
+}
+
+const songIdeas = [
+"คืนนี้เหมาะกับเพลงอะคูสติกเศร้าๆ เปิดเบาๆ",
+"เพลงอินดี้ฟังตอนฝนตก เหมาะกับความคิดถึง",
+"เพลงลูกทุ่งอกหัก ฟีลเมาแล้วคิดถึงแฟนเก่า",
+"เพลงฮีลใจสำหรับคนกำลังเริ่มต้นใหม่",
+"เพลงช้าๆ เสียงผู้ชายอบอุ่น ฟังตอนก่อนนอน",
+"เพลงสายเมาแบบกวนๆ แต่แอบเศร้า",
+"เพลงรักที่ไม่ได้ครอบครอง ฟีลแอบรัก",
+"เพลงเหงาๆ สำหรับคนที่ยิ้มทั้งที่เจ็บ"
+];
+
+function randomSongIdea(){
+  const random = songIdeas[Math.floor(Math.random()*songIdeas.length)];
+  document.getElementById("songText").innerText = "🎵 " + random;
+}
+
 function downloadImage(){
   const card = document.getElementById("quoteCard");
-  html2canvas(card, {
+  html2canvas(card,{
     scale:3,
     useCORS:true,
     backgroundColor:null
-  }).then(canvas => {
+  }).then(canvas=>{
     const link = document.createElement("a");
     link.download = "paakjai-quote.png";
     link.href = canvas.toDataURL("image/png");
